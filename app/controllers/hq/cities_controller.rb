@@ -4,6 +4,7 @@ class Hq::CitiesController < Hq::ApplicationController
   add_breadcrumb I18n.t('activerecord.models.cities'), :hq_cities_path
 
   def index
+    #includes eklenerek veritabanını yormazsın.
     @search = City.includes(:country).order(id: :desc).search(params[:q])
     @cities = @search.result(distinct: true).paginate(page: params[:page])
     respond_with(@cities)

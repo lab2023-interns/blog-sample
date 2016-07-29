@@ -38,6 +38,7 @@ class Hq::CountriesController < Hq::ApplicationController
 
   def destroy
     @country.destroy
+    #aynı sayfada kalmanı sağlıyor.
     respond_with(:hq, @country, location: request.referer)
   end
 
