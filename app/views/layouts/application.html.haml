@@ -25,7 +25,9 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            = link_to 'Blog', root_path, class: 'navbar-brand'
+            = link_to root_path, class: 'navbar-brand' do
+              %i.fa.fa-home
+              Blog
           / Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %form.navbar-form.navbar-left
@@ -34,14 +36,24 @@
               %button.btn.btn-default{:type => "submit"}
                 %i.fa.fa-search{"aria-hidden" => "true"}
             %ul.nav.navbar-nav.navbar-right
-              %li
-                = link_to new_user_session_path do
-                  %i.fa.fa-pencil-square-o{"aria-hidden" => "true"}
-                  Giriş Yap
-              %li
-                = link_to new_user_registration_path do
-                  %i.fa.fa-user{"aria-hidden" => "true"}
-                  Üye Ol
+              - if user_signed_in?
+                %li
+                  = link_to user_profile_path(current_user) do
+                    %i.fa.fa-user
+                    Profili göster
+                %li
+                  = link_to destroy_user_session_path, method: :delete do
+                    %i.fa.fa-sign-out
+                    Çıkış yap
+              -else
+                %li
+                  = link_to new_user_session_path do
+                    %i.fa.fa-pencil-square-o{"aria-hidden" => "true"}
+                    Giriş Yap
+                %li
+                  = link_to new_user_registration_path do
+                    %i.fa.fa-user{"aria-hidden" => "true"}
+                    Üye Ol
             / /.navbar-collapse
           / /.container-fluid
 
