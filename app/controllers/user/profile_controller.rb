@@ -14,7 +14,7 @@ class User::ProfileController < User::UserApplicationController
 
   def update
     @profile.update(profile_params)
-    respond_with([:user, @profile], location: user_profile_path)
+    respond_with(:user, @profile, location: user_profile_path)
   end
 
   private
